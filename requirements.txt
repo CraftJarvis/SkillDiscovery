@@ -1,0 +1,6 @@
+torch==2.0.1
+gym3
+attrs
+opencv-python
+ray
+matplotlib

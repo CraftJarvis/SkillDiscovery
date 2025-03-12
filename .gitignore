@@ -1,0 +1,7 @@
+__pycache__/
+lib/__pycache__/
+logs/
+models/
+weights/
+result/
+data/
