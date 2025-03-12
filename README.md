@@ -1,6 +1,6 @@
 
 
-# Open-World Skill Discovery from Unsegmented Demonstration Videos
+# Open-World Skill Discovery from Unsegmented Demonstrations
 
 > :page_facing_up: [Read Paper](https://craftjarvis.github.io/SkillDiscovery/static/paper.pdf) \
   :link: [Project Website](https://craftjarvis.github.io/SkillDiscovery) \
