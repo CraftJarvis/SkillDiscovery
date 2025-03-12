@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Open-World Skill Discovery from Unsegmented Demonstrations">
+  <meta name="keywords" content="SBD, Skill Boundary Detection, Skill Discovery, Open-World Skill Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open-World Skill Discovery from Unsegmented Demonstrations</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Open-World Skill Discovery from Unsegmented Demonstrations</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://fatty-belly.github.io/skill-discovery/">Jingwen Deng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://zhwang4ai.github.io/">Zihao Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://phython96.github.io/">Shaofei Cai</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://liuanji.github.io/">Anji Liu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=KVzR1XEAAAAJ&hl=zh-CN&oi=ao">Yitao Liang</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University,</span>
+            <span class="author-block"><sup>2</sup>University of California, Los Angeles</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <a href="https://craftjarvis.github.io/">Team CraftJarvis</a>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://google.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                  <a href="https://github.com/CraftJarvis/SkillDiscovery"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-gray">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Learning skills in open-world environments is essential for developing agents capable of handling a variety of tasks by combining basic skills.
+            Online demonstration videos are typically long and unsegmented, making them difficult to segment and label with skill identifiers.
+            Unlike existing methods that rely on sequence sampling or human labeling, we have developed a self-supervised learning-based approach to segment these long videos into a series of semantic-aware and skill-consistent segments.
+            Drawing inspiration from human cognitive event segmentation theory, we introduce <b>Skill Boundary Detection</b> (SBD), an annotation-free temporal video segmentation algorithm. SBD detects skill boundaries in a video by leveraging prediction errors from a pretrained unconditional action-prediction model. This approach is based on the assumption that a significant increase in prediction error indicates a shift in the skill being executed. 
+            We evaluated our method in the Minecraft environment, a rich open-world simulator with extensive gameplay videos available online. Our SBD-generated segments improved the average performance of two conditioned policies by 63.7% and 52.1% on short-term atomic skill tasks, and their corresponding hierarchical agents by 11.3% and 20.8% on long-horizon tasks. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Pipeline. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Pipeline</h2>
+        <div class="content has-text-centered">
+            <img src="./static/images/pipeline.jpg"/>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Our method SBD for discovering skills from unsegmented demonstration videos consists of four stages:
+          </p>
+          <p>
+            <b>Stage I:</b> An <i>unconditional</i> Transformer-XL based policy model is pretrained on an unsegmented dataset to predict future actions (labeled by an inverse dynamics model) based on past observations.
+          </p>
+          <p>
+            <b>Stage II:</b> The pretrained unconditional policy will produce a high predicted action loss when encountering uncertain observations (e.g., deciding whether to kill a new sheep) in open worlds. These timesteps should be marked as skill boundaries, indicating the need for additional instructions to control behaviors. We segment the long unsegmented videos into a series of short atomic skill demonstrations.
+          </p>
+          <p>
+            <b>Stage III:</b> We train a <i>conditional</i> Transformer-XL based policy model on the segmented dataset to master a variety of atomic skills.
+          </p>
+          <p>
+            <b>Stage IV:</b> Finally, we use hierarchical methods (a combination of vision-language models and the conditional policy) to model the long demonstration and follow long-horizon instructions.
+          </p>
+        </div>
+        <br/>
+      </div>
+    </div>
+    <!--/ Pipeline. -->
+
+  </div>
+</section>
+
+<section class="section-gray">
+  <div class="container is-max-desktop">
+
+    <!-- Comparison. -->
+    <h2 class="title is-3 has-text-centered">Comparison of Segmentation Methods</h2>
+    <table align="center" style="width: 100%; border-collapse: collapse;">
+      <tr>
+          <td style="width: 50%; padding-right: 15px;">
+              <img src="./static/images/comparison.png" width="100%">
+              <p>
+                *<i>Green squares represent observations, and red circles represent actions.</i>
+              </p>
+          </td>
+          <td width="50%">
+            <div class="content has-text-justified">
+              <p>Existing methods usually rely on additional rules, while our method is learning-based.</p>
+              <p>
+                <b>Sequential sampling methods</b> divide videos into segments of predefined lengths (e.g., fixed length, uniform distribution). However, these methods do not ensure that each segment contains a distinct skill. Additionally, predefined lengths may not match the actual distribution of skill lengths in real-world scenarios.
+              </p>
+              <p>
+                <b>Reward-driven methods</b> discover skills through the environment’s reward signal. It is limited by its inability to capture skills that lack associated rewards and by the risk of splitting a single skill into multiple segments when rewards are repeatedly gained during execution.
+              </p>
+              <p>
+                <b>Top-down methods</b> rely on predefined skill sets from human experts. They use manual labeling or supervised learning to segment videos. Although this approach can produce reasonable results, it is expensive and limited by the narrow range of predefined skills.
+              </p>
+              <p>
+                <b>Bottom-up methods</b> use algorithms such as agglomerative clustering or byte-pair encoding (BPE) to split action sequences. However, they struggle in partially observable settings where both observations and actions must be considered because these algorithms cannot deal with observations due to the high dimensionality.
+              </p>
+
+              <p>
+                <b>Our method SBD</b> is annotation-free, adaptive at identifying diverse skills, and highly effective in open-world scenarios.
+              </p>
+            </div>
+          </td>
+      </tr>
+    </table>
+    <!--/ Comparison. -->
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3 has-text-centered">Experiment Results </h2>
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- Short-horizon Results. -->
+        <h3 class="title is-4 has-text-centered">Short-Horizon Atomic Tasks</h3>
+        <div class="content has-text-centered">
+            <img src="./static/images/short-horizon.png"/>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            We select basic skills such as <code>chop down trees</code> and advanced skills like <code>smelt items with furnace</code> in Minecraft as evaluation benchmarks.
+            We test 12 different skill sets designed in <a href="https://arxiv.org/pdf/2310.08367">MCU</a>.
+            Each task is tested over 100 times, except for <code>sleep in bed</code> and <code>use bow</code>, which are evaluated 10 times using human rating.
+            Scores with % indicate success rates, while those without % represent rewards for the corresponding tasks.
+            The seeds for the Minecraft environment are fixed for the corresponding task to make a fair comparison between different models.
+            The controllers showed substantial improvements across most tasks, with an average performance enhancement of 63.7% for <a href="https://craftjarvis.github.io/GROOT/">GROOT</a> and 52.1% for <a href="https://sites.google.com/view/steve-1">STEVE-1</a>.
+          </p>
+        </div>
+        <br/>
+        <!--/ Short-horizon Results. -->
+
+        <!-- Short-horizon Results. -->
+        <h3 class="title is-4 has-text-centered">Long-horizon Programmatic Tasks</h3>
+        <div class="content has-text-centered">
+            <img src="./static/images/long-horizon.png"/>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Programmatic tasks require the agent to start from an empty inventory in a new world until obtaining the final required items, such as “obtain an iron pickaxe from scratch”, which is usually a chain of atomic tasks. 
+            To further verify that the improvements in controllers enhance the ability of hierarchical agents, we evaluate <a href="https://omnijarvis.github.io/">Omnijarvis</a> and <a href="https://craftjarvis.github.io/JARVIS-1/">JARVIS-1</a> on groups of programmatic tasks selected from the original papers.
+            All tasks are tested 30 times. In each group, the agent is required to obtain a certain type of items from scratch or given an iron pickaxe. For example, the diamond group includes diamond pickaxe, diamond sword, jukebox, <i>etc</i>. 
+            The agents have substantial improvements across most of the tasks, achieving an average performance enhancement of 11.3% for Omnijarvis and 20.8% for JARVIS-1.
+          </p>
+        </div>
+        <br/>
+        <!--/ Short-horizon Results. -->
+    </div>
+
+    </div>
+  </section>
+
+  <section class="section-gray">
+    <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Skill Videos</h2>
+    <p class="has-text-centered">Below are the video examples segmented by our method for each skill in the benchmark.</p>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-smelt-food">
+          <video poster="" id="smelt-food" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/smelt-food.mp4"
+              type="video/mp4">
+          </video>
+          <p class="has-text-centered">Smelt Food</p>
+        </div>
+        <div class="item item-hunt-sheep">
+          <video poster="" id="hunt-sheep" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/hunt-sheep.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Hunt Sheep</p>
+        </div>
+        <div class="item item-sleep">
+          <video poster="" id="sleep" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/sleep.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Sleep</p>
+        </div>
+        <div class="item item-use-torch">
+          <video poster="" id="use-torch" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/use-torch.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Use Torch</p>
+        </div>
+        <div class="item item-use-boat">
+          <video poster="" id="use-boat" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/use-boat.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Use Boat</p>
+        </div>
+        <div class="item item-use-bow">
+          <video poster="" id="use-bow" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/use-bow.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Use Bow</p>
+        </div>
+        <div class="item item-collect-stone">
+          <video poster="" id="collect-stone" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/collect-stone.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Collect Stone</p>
+        </div>
+        <div class="item item-collect-seagrass">
+          <video poster="" id="collect-seagrass" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/collect-seagrass.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Collect Seagrass</p>
+        </div>
+        <div class="item item-collect-wood">
+          <video poster="" id="collect-wood" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/collect-wood.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Collect Wood</p>
+        </div>
+        <div class="item item-collect-dirt">
+          <video poster="" id="collect-dirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/collect-dirt.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Collect Dirt</p>
+        </div>
+        <div class="item item-collect-grass">
+          <video poster="" id="collect-grass" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/collect-grass.mp4"
+                    type="video/mp4">
+          </video>
+          <p class="has-text-centered">Collect Grass</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://google.com">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/CraftJarvis/SkillDiscovery" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is  adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            , with <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
