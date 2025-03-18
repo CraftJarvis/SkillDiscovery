@@ -4,6 +4,7 @@
 
 > :page_facing_up: [Read Paper](https://craftjarvis.github.io/SkillDiscovery/static/paper.pdf) \
   :link: [Project Website](https://craftjarvis.github.io/SkillDiscovery) \
+  :hugs: [Datasets](https://huggingface.co/datasets/fatty-belly/MinecraftSkillDiscovery) \
   :space_invader: [MineRL Environment](https://github.com/minerllabs/minerl) (note version 1.0+ required)
 
 
