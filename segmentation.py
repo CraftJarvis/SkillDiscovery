@@ -18,7 +18,7 @@ video_min_len = 2
 def compute_boundary(video_path, json_path, agent, 
                      events_frame=[], idm_agent=None):
     
-    gap = 18
+    GAP = 18 if json_path is not None else 17
 
     boundaries = []
     events_frame = sorted(list(events_frame))
@@ -60,7 +60,7 @@ def compute_boundary(video_path, json_path, agent,
         losses.append(-log_prob.item() * discount)
         if len(losses) > window_size:
             avg_loss = sum(losses)/len(losses)
-            if losses[-1] - avg_loss > gap:
+            if losses[-1] - avg_loss > GAP:
                 flag = True
 
         if id - prev_id >= video_min_len and (flag or (frame_id >= events_frame[0]) or id - prev_id >= video_max_len):
