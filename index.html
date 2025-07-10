@@ -133,9 +133,10 @@
           <p>
             Learning skills in open-world environments is essential for developing agents capable of handling a variety of tasks by combining basic skills.
             Online demonstration videos are typically long and unsegmented, making them difficult to segment and label with skill identifiers.
-            Unlike existing methods that rely on sequence sampling or human labeling, we have developed a self-supervised learning-based approach to segment these long videos into a series of semantic-aware and skill-consistent segments.
+            Unlike existing methods that rely on random splitting or human labeling, we have developed a self-supervised learning-based approach to segment these long videos into a series of semantic-aware and skill-consistent segments.
             Drawing inspiration from human cognitive event segmentation theory, we introduce <b>Skill Boundary Detection</b> (SBD), an annotation-free temporal video segmentation algorithm. SBD detects skill boundaries in a video by leveraging prediction errors from a pretrained unconditional action-prediction model. This approach is based on the assumption that a significant increase in prediction error indicates a shift in the skill being executed. 
-            We evaluated our method in the Minecraft environment, a rich open-world simulator with extensive gameplay videos available online. Our SBD-generated segments improved the average performance of two conditioned policies by 63.7% and 52.1% on short-term atomic skill tasks, and their corresponding hierarchical agents by 11.3% and 20.8% on long-horizon tasks. 
+            We evaluated our method in the Minecraft environment, a rich open-world simulator with extensive gameplay videos available online. Our SBD-generated segments improved the average relative performance of two conditioned policies by 63.7% and 52.1% on short-term atomic skill tasks, and their corresponding hierarchical agents by 11.3% and 20.8% on long-horizon tasks.
+            Our method can leverage the diverse YouTube videos to train instruction-following agents. 
           </p>
         </div>
       </div>
@@ -160,7 +161,7 @@
             Our method SBD for discovering skills from unsegmented demonstration videos consists of four stages:
           </p>
           <p>
-            <b>Stage I:</b> An <i>unconditional</i> Transformer-XL based policy model is pretrained on an unsegmented dataset to predict future actions (labeled by an inverse dynamics model) based on past observations.
+            <b>Stage I:</b> An <i>unconditional</i> Transformer-XL based policy model is pretrained on an unsegmented dataset to predict future actions (labeled by an inverse dynamics model) based on past observations using behavioral cloning.
           </p>
           <p>
             <b>Stage II:</b> The pretrained unconditional policy will produce a high predicted action loss when encountering uncertain observations (e.g., deciding whether to kill a new sheep) in open worlds. These timesteps should be marked as skill boundaries, indicating the need for additional instructions to control behaviors. We segment the long unsegmented videos into a series of short atomic skill demonstrations.
@@ -169,7 +170,7 @@
             <b>Stage III:</b> We train a <i>conditional</i> Transformer-XL based policy model on the segmented dataset to master a variety of atomic skills.
           </p>
           <p>
-            <b>Stage IV:</b> Finally, we use hierarchical methods (a combination of vision-language models and the conditional policy) to model the long demonstration and follow long-horizon instructions.
+            <b>Stage IV:</b> Finally, we use hierarchical methods (a combination of vision-language models and the conditional policy) to model the long demonstration videos and follow long-horizon instructions.
           </p>
         </div>
         <br/>
@@ -626,16 +627,16 @@
             <div class="content has-text-justified">
               <p>Existing methods usually rely on additional rules, while our method is learning-based.</p>
               <p>
-                <b>Sequential sampling methods</b> divide videos into segments of predefined lengths (e.g., fixed length, uniform distribution). However, these methods do not ensure that each segment contains a distinct skill. Additionally, predefined lengths may not match the actual distribution of skill lengths in real-world scenarios.
+                <b>Random splitting methods</b> divide videos into segments of predefined lengths (e.g., fixed length, uniform distribution). However, they do not ensure that each segment contains a distinct skill. Additionally, predefined lengths may not match the actual distribution of skill length in real world.
               </p>
               <p>
-                <b>Reward-driven methods</b> discover skills through the environment’s reward signal. It is limited by its inability to capture skills that lack associated rewards and by the risk of splitting a single skill into multiple segments when rewards are repeatedly gained during execution.
+                <b>Reward-driven methods</b> discover skills through the environment’s reward signal. They are limited by their inability to capture skills with no associated rewards and by the risk of splitting one skill into multiple segments when rewards are repeatedly gained during execution.
               </p>
               <p>
-                <b>Top-down methods</b> rely on predefined skill sets from human experts. They use manual labeling or supervised learning to segment videos. Although this approach can produce reasonable results, it is expensive and limited by the narrow range of predefined skills.
+                <b>Top-down methods</b> rely on predefined skill sets from human experts. They use manual labeling or supervised learning to segment videos. Although this method can produce reasonable results, it is expensive and limited by the narrow range of predefined skills.
               </p>
               <p>
-                <b>Bottom-up methods</b> use algorithms such as agglomerative clustering or byte-pair encoding (BPE) to split action sequences. However, they struggle in partially observable settings where both observations and actions must be considered because these algorithms cannot deal with observations due to the high dimensionality.
+                <b>Bottom-up methods</b> use algorithms such as agglomerative clustering or byte-pair encoding (BPE) to split action sequences. However, they struggle in visually partially observable settings where both observations and actions must be considered.
               </p>
 
               <p>
@@ -665,10 +666,9 @@
           <p>
             We select basic skills such as <code>chop down trees</code> and advanced skills like <code>smelt items with furnace</code> in Minecraft as evaluation benchmarks.
             We test 12 different skill sets designed in <a href="https://arxiv.org/pdf/2310.08367">MCU</a>.
-            Each task is tested over 100 times, except for <code>sleep in bed</code> and <code>use bow</code>, which are evaluated 10 times using human rating.
-            Scores with % indicate success rates, while those without % represent rewards for the corresponding tasks.
-            The seeds for the Minecraft environment are fixed for the corresponding task to make a fair comparison between different models.
-            The controllers showed substantial improvements across most tasks, with an average performance enhancement of 63.7% for <a href="https://craftjarvis.github.io/GROOT/">GROOT</a> and 52.1% for <a href="https://sites.google.com/view/steve-1">STEVE-1</a>.
+            Each task is tested over 100 times, except for <code>sleep in bed</code> and <code>use bow</code>, which are evaluated 10 times using human rating because they cannot be automatically verified with in-game information.
+            Scores with % indicate success rates, while those without % represent rewards for the corresponding tasks (for finer-grained assessment of easier tasks).
+            The controllers showed substantial improvements across most tasks, with an average relative performance enhancement of 63.7% for <a href="https://craftjarvis.github.io/GROOT/">GROOT</a> and 52.1% for <a href="https://sites.google.com/view/steve-1">STEVE-1</a>.
           </p>
         </div>
         <br/>
@@ -683,8 +683,8 @@
           <p>
             Programmatic tasks require the agent to start from an empty inventory in a new world until obtaining the final required items, such as “obtain an iron pickaxe from scratch”, which is usually a chain of atomic tasks. 
             To further verify that the improvements in controllers enhance the ability of hierarchical agents, we evaluate <a href="https://omnijarvis.github.io/">Omnijarvis</a> and <a href="https://craftjarvis.github.io/JARVIS-1/">JARVIS-1</a> on groups of programmatic tasks selected from the original papers.
-            All tasks are tested 30 times. In each group, the agent is required to obtain a certain type of items from scratch or given an iron pickaxe. For example, the diamond group includes diamond pickaxe, diamond sword, jukebox, <i>etc</i>. 
-            The agents have substantial improvements across most of the tasks, achieving an average performance enhancement of 11.3% for Omnijarvis and 20.8% for JARVIS-1.
+            All tasks are tested over 30 times. In each group, the agent is required to obtain a certain type of items from scratch or be given an iron pickaxe. For example, the diamond group includes diamond pickaxe, diamond sword, jukebox, <i>etc</i>. 
+            The agents have substantial improvements across most of the tasks, achieving an average relative performance enhancement of 11.3% for Omnijarvis and 20.8% for JARVIS-1.
           </p>
         </div>
         <br/>
