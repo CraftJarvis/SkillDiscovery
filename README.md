@@ -63,3 +63,13 @@ python segmentation.py --video_path ./example_videos/short.mp4
 ```
 
 See the video clips in `result` directory (under the subdirectory with the same name as the video).
+
+# Citation
+```bibtex
+@article{deng2025openworld,
+  title={Open-World Skill Discovery from Unsegmented Demonstrations},
+  author={Jingwen Deng and Zihao Wang and Shaofei Cai and Anji Liu and Yitao Liang},
+  journal={arXiv preprint arXiv:2503.10684},
+  year={2025}
+}
+```
